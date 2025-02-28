@@ -1,0 +1,42 @@
+CREATE DATABASE admin_terrenos;
+USE admin_terrenos;
+
+
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE terrenos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    ubicacion VARCHAR(255) NOT NULL,
+    tamaño DECIMAL(10,2) NOT NULL,
+    costo DECIMAL(12,2) NOT NULL,
+    id_usuario INT,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE SET NULL
+);
+
+
+CREATE TABLE clientes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    telefono VARCHAR(20),
+    id_terreno INT,
+    FOREIGN KEY (id_terreno) REFERENCES terrenos(id) ON DELETE CASCADE
+);
+
+
+CREATE TABLE pagos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT,
+    pago_inicial DECIMAL(12,2) NOT NULL,
+    plazo_pago VARCHAR(50) NOT NULL,
+    fecha_pago TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_cliente) REFERENCES clientes(id) ON DELETE CASCADE
+);
