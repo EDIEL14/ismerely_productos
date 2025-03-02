@@ -23,7 +23,7 @@
                                                 
                                                     const handleWhatsAppClick = () => {
                                                         if (selectedProduct) {
-                                                            const message = `Hola vengo de la página web y estoy interesado/a en el producto de ${selectedProduct.name} y me gustaría recibir más información mas detallada sobre el producto y su precio por favor, ¡Gracias!.`;
+                                                            const message = `Hola vengo de la página web y estoy interesado/a en el producto de ${selectedProduct.name} y me gustaría recibir más información detallada sobre el producto y su precio por favor, ¡Gracias!.`;
                                                             const url = `https://wa.me/9982140280?text=${encodeURIComponent(message)}`;
                                                             window.open(url, '_blank');
                                                         }
@@ -34,11 +34,11 @@
                                                     return (
                                                         <div className="container py-5">
                                                             <h1 className="text-center text-dark fw-bold display-4 mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                                                                <span className="text-primary">Catálogo</span> de Productos
+                                                                <span className="text-primary">PRODUCTOS </span> ISMERELY
                                                             </h1>
                                                 
                                                             <p className="text-center mb-5" style={{ fontSize: '1.25rem' }}>
-                                                                🌿 Desintoxica, Regenera y Nutre 🌿
+                                                                🌿 DESINTOXICA, REGENERA Y NUTRE 🌿
                                                             </p>
                                                 
                                                             <div className="row justify-content-center">
@@ -92,9 +92,9 @@
                                                                             <div
                                                                                 className="modal-header"
                                                                                 style={{
-                                                                                    background: 'linear-gradient(135deg, #6A11CB 0%, #2575FC 100%)',
+                                                                                    background: 'linear-gradient(135deg, #60e2ff 0%, #2575FC 100%)',
                                                                                     padding: '20px 30px',
-                                                                                    borderBottom: '3px solid #F1F1F1',
+                                                                                    borderBottom: '3px solid #ff0000',
                                                                                 }}
                                                                             >
                                                                                 <h5 className="modal-title d-flex align-items-center" id="productModalLabel">
@@ -161,7 +161,7 @@
                                                                                                     borderRadius: '30px',
                                                                                                 }}
                                                                                             >
-                                                                                                Ir a Contactarla
+                                                                                                MANDARLE MENSAJE
                                                                                             </button>
                                                                                             
                                                                                         </div>
@@ -193,7 +193,7 @@
                                                 
                                                 <div className="text-center mt-5">
                                                     <p className="fw-bold" style={{ fontSize: '1.5rem', color: '#333', marginBottom: '20px' }}>
-                                                        📢 <span style={{ color: '#2C3E50' }}>AVISO IMPORTANTE:</span> Para obtener el catálogo completo, favor de pediselo a nuestra embajadora.
+                                                        📢 <span style={{ color: '#2C3E50' }}></span> ¿Quieres obtener el catalago completo?, nuestra embajadora te ayudara con eso.
                                                     </p>
                                                     <a
                                                         href="https://wa.me/9982140280?text=Hola vengo de la pagina web y me gustaría tener el catálogo completo. ¿Podría ayudarme con eso?. Gracias"
@@ -213,7 +213,7 @@
                                                         onMouseEnter={(e) => (e.target.style.backgroundColor = '#218c47')}
                                                         onMouseLeave={(e) => (e.target.style.backgroundColor = '#28a745')}
                                                     >
-                                                        Mandar Mensaje
+                                                        MANDAR MENSAJE
                                                     </a>
                                                 </div>
 
@@ -221,7 +221,7 @@
                         <button
                             type="button"
                             className="btn btn-primary shadow-lg"
-                            onClick={() => router.back()} // Función para regresar a la página anterior
+                            onClick={() => router.back()}
                             style={{
                                 borderRadius: "30px",
                                 fontSize: "1.2rem",
