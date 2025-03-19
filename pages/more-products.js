@@ -207,7 +207,7 @@
                                                     </p>
 
                                                     <a
-                                                        href={`https://wa.me/9982140280?${
+                                                        href={`https://wa.me/9982140280?text=${
                                                             `Hola ${getGreeting()} vengo de la página web y me gustaría tener el catálogo completo. ¿Podría ayudarme con eso?. Gracias`
                                                         }`}
                                                         target="_blank"
