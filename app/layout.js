@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "oly-suplementos",
+  description: "Mejora tu salud con productos Ismerely de alta calidad y son 100% naturales."
 };
 
 export default function RootLayout({ children }) {
