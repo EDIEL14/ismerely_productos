@@ -21,16 +21,20 @@
                                                     const router = useRouter();
                                                     const [selectedProduct, setSelectedProduct] = useState(null);
 
-                                                    const getTimeBasedGreeting = () => {
+                                                    const getGreeting = () => {
                                                         const hour = new Date().getHours();
-                                                        if (hour < 12) return 'buenos días';
-                                                        if (hour < 18) return 'buenas tardes';
-                                                        if (hour < 20) return 'buenas noches';
+                                                        if (hour < 12) {
+                                                            return "buenos días";
+                                                        } else if (hour < 18) {
+                                                            return "buenas tardes";
+                                                        } else {
+                                                            return "buenas noches";
+                                                        }
                                                     };
                                                 
                                                     const handleWhatsAppClick = () => {
                                                         if (selectedProduct) {
-                                                            const message = `Hola ${getTimeBasedGreeting()} vengo de la página web y estoy interesado/a en el producto de ${selectedProduct.name} y me gustaría recibir más información detallada sobre el producto y su precio por favor, ¡Gracias!`;
+                                                            const message = `Hola ${getGreeting()} vengo de la página web y estoy interesado/a en el producto de ${selectedProduct.name} y me gustaría recibir más información detallada sobre el producto y su precio por favor, ¡Gracias!`;
                                                             const url = `https://wa.me/9982140280?`;
                                                             window.open(url, '_blank');
                                                         }
@@ -204,8 +208,8 @@
                                                     </p>
 
                                                     <a
-                                                        href={`https://wa.me/9982140280?text=${
-                                                            `Hola ${getTimeBasedGreeting()} vengo de la página web y me gustaría tener el catálogo completo. ¿Podría ayudarme con eso?. Gracias`
+                                                        href={`https://wa.me/9982140280?text${
+                                                            `Hola ${getGreeting()} vengo de la página web y me gustaría tener el catálogo completo. ¿Podría ayudarme con eso?. Gracias`
                                                         }`}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
