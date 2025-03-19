@@ -33,7 +33,7 @@
                                 <p className="fs-5 fw-semibold text-dark">Pídelo: Contacta a tu embajadora Olivia de Ismerely</p>
                                 <div className="d-flex flex-column flex-md-row justify-content-center gap-3">
                                     <a
-                                        href={`https://wa.me/9982140280?text${
+                                        href={`https://wa.me/9982140280?text=${
                                             `Hola ${getGreeting()} Vengo de la página web y me gustaría más información detallada de los productos de alto impacto. Gracias.`
                                         }`}
                                         target="_blank"
