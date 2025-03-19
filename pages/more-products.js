@@ -20,11 +20,18 @@
                                                 export default function ProductGallery() {
                                                     const router = useRouter();
                                                     const [selectedProduct, setSelectedProduct] = useState(null);
+
+                                                    const getTimeBasedGreeting = () => {
+                                                        const hour = new Date().getHours();
+                                                        if (hour < 12) return 'buenos días';
+                                                        if (hour < 18) return 'buenas tardes';
+                                                        if (hour < 20) return 'buenas noches';
+                                                    };
                                                 
                                                     const handleWhatsAppClick = () => {
                                                         if (selectedProduct) {
-                                                            const message = `Hola vengo de la página web y estoy interesado/a en el producto de ${selectedProduct.name} y me gustaría recibir más información detallada sobre el producto y su precio por favor, ¡Gracias!.`;
-                                                            const url = `https://wa.me/9982140280?text=${encodeURIComponent(message)}`;
+                                                            const message = `Hola ${getTimeBasedGreeting()} vengo de la página web y estoy interesado/a en el producto de ${selectedProduct.name} y me gustaría recibir más información detallada sobre el producto y su precio por favor, ¡Gracias!`;
+                                                            const url = `https://wa.me/9982140280?`;
                                                             window.open(url, '_blank');
                                                         }
                                                     };
@@ -193,10 +200,13 @@
                                                 
                                                 <div className="text-center mt-5">
                                                     <p className="fw-bold" style={{ fontSize: '1.5rem', color: '#333', marginBottom: '20px' }}>
-                                                        📢 <span style={{ color: '#2C3E50' }}></span> ¿Quieres obtener el catalago completo?, nuestra embajadora te ayudara con eso.
+                                                        📢 <span style={{ color: '#2C3E50' }}></span> ¿Quieres obtener el catálogo completo?, nuestra embajadora te ayudará con eso.
                                                     </p>
+
                                                     <a
-                                                        href="https://wa.me/9982140280?text=Hola vengo de la pagina web y me gustaría tener el catálogo completo. ¿Podría ayudarme con eso?. Gracias"
+                                                        href={`https://wa.me/9982140280?${
+                                                            `Hola ${getTimeBasedGreeting()} vengo de la página web y me gustaría tener el catálogo completo. ¿Podría ayudarme con eso?. Gracias`
+                                                        }`}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
                                                         className="btn btn-success d-flex align-items-center justify-content-center shadow-lg mb-4"
@@ -217,25 +227,25 @@
                                                     </a>
                                                 </div>
 
-                                                <div className="text-center mt-5">
-                        <button
-                            type="button"
-                            className="btn btn-primary shadow-lg"
-                            onClick={() => router.back()}
-                            style={{
-                                borderRadius: "30px",
-                                fontSize: "1.2rem",
-                                padding: "12px 24px",
-                                width: "fit-content",
-                                margin: "0 auto",
-                                transition: "all 0.3s ease",
-                            }}
-                            onMouseEnter={(e) => (e.target.style.backgroundColor = "#0056b3")}
-                            onMouseLeave={(e) => (e.target.style.backgroundColor = "#007bff")}
-                        >
-                            REGRESAR
-                        </button>
-                    </div>
+                                                                                    <div className="text-center mt-5">
+                                                            <button
+                                                                type="button"
+                                                                className="btn btn-primary shadow-lg"
+                                                                onClick={() => router.back()}
+                                                                style={{
+                                                                    borderRadius: "30px",
+                                                                    fontSize: "1.2rem",
+                                                                    padding: "12px 24px",
+                                                                    width: "fit-content",
+                                                                    margin: "0 auto",
+                                                                    transition: "all 0.3s ease",
+                                                                }}
+                                                                onMouseEnter={(e) => (e.target.style.backgroundColor = "#0056b3")}
+                                                                onMouseLeave={(e) => (e.target.style.backgroundColor = "#007bff")}
+                                                            >
+                                                                REGRESAR
+                                                            </button>
+                                                        </div>
 
                                                         </div>
                                                     );

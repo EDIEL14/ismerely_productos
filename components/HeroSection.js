@@ -61,7 +61,7 @@
                                         whileHover={{ scale: 1.1 }}
                                         whileTap={{ scale: 0.95 }}
                                     >
-                                        Ver Catálogo
+                                        Explorar Catálogo
                                     </motion.a>
 
                                     <motion.a
