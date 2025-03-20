@@ -23,9 +23,9 @@
 
                                                     const getGreeting = () => {
                                                         const hour = new Date().getHours();
-                                                        if (hour < 12) {
+                                                        if (hour < 11) {
                                                             return "buenos días";
-                                                        } else if (hour < 18) {
+                                                        } else if (hour < 19) {
                                                             return "buenas tardes";
                                                         } else {
                                                             return "buenas noches";
