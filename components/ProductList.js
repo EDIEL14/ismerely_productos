@@ -1,9 +1,10 @@
             'use client';
 
             import { useState } from 'react';
+            import { motion } from 'framer-motion';
             import 'bootstrap/dist/css/bootstrap.min.css';
             import 'animate.css';
-            import '../styles/professional-styles.css';
+            import '../styles/professional-styles.css'; 
 
             const ProductList = () => {
                 const products = [
@@ -18,18 +19,27 @@
                 let greeting = '';
 
                 if (currentHour >= 5 && currentHour < 12) {
-                    greeting = 'Hola buenos días';
+                    greeting = '¡Buenos días!';
                 } else if (currentHour >= 12 && currentHour < 19) {
-                    greeting = 'Holabuenas tardes';
+                    greeting = '¡Buenas tardes!';
                 } else {
-                    greeting = 'Hola buenas noches';
+                    greeting = '¡Buenas noches!';
                 }
 
                 return (
                     <section id="catalogo" className="py-5 bg-light">
-                        <div className="container text-center mb-4">
-                            <h2 className="fw-bold text-dark animate__animated animate__fadeIn">PRODUCTOS DE BATALLA</h2>
-                            <p className="fs-5 text-muted animate__animated animate__fadeIn animate__delay-1s">Suplementos orgánicos de alto impacto</p>
+                        <div className="container text-center mb-5">
+                            <motion.h2
+                                className="fw-bold text-dark mb-3 animate__animated animate__fadeIn"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 1 }}
+                            >
+                                Productos de Batalla de Alto Impacto
+                            </motion.h2>
+                            <p className="fs-5 text-muted animate__animated animate__fadeIn animate__delay-1s">
+                                Suplementos orgánicos para tu bienestar
+                            </p>
                         </div>
 
                         <div className="container">
@@ -41,15 +51,17 @@
                         </div>
 
                         <div className="text-center mt-5 animate__animated animate__fadeIn animate__delay-2s">
-                            <p className="fs-5 fw-semibold text-dark">Pídelo: Contacta a tu embajadora Olivia de Ismerely</p>
+                            <p className="fs-5 fw-semibold text-dark">Pídelo ahora: Contacta a tu embajadora de Ismerely</p>
                             <div className="d-flex flex-column flex-md-row justify-content-center gap-3">
-                                <a
+                                <motion.a
                                     href={`https://wa.me/9982140280?text=${(`${greeting}, vengo de la página web y me gustaría más información detallada de los productos de alto impacto por favor.`)}`}
                                     target="_blank"
                                     className="btn btn-success px-4 py-2 rounded shadow-sm animate__animated animate__bounceIn"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.98 }}
                                 >
-                                    MANDAR MENSAJE
-                                </a>
+                                    Enviar Mensaje
+                                </motion.a>
                             </div>
                         </div>
                     </section>
@@ -61,7 +73,12 @@
 
                 return (
                     <div className="col-12 col-md-6 col-lg-4">
-                        <div className="card border-0 shadow-lg rounded animate__animated animate__fadeInUp">
+                        <motion.div
+                            className="card border-0 shadow-lg rounded-lg animate__animated animate__fadeInUp"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.8 }}
+                        >
                             <img
                                 src={product.imageUrl}
                                 alt={product.name}
@@ -88,7 +105,7 @@
                                     </div>
                                 )}
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
                 );
             };

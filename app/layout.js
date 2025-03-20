@@ -13,13 +13,12 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "oly-suplementos",
-  description: "Mejora tu salud con productos Ismerely de alta calidad y son 100% naturales.",
+  description: "Mejora tu salud con productos Ismerely de alta calidad y son 100% naturales avalados por Sagarpa y Cofepris.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

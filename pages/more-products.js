@@ -1,6 +1,7 @@
                         import { useState } from 'react';
                         import 'bootstrap/dist/css/bootstrap.min.css';
                         import { useRouter } from 'next/router';
+                        import '../styles/styles.css'; 
 
                                     const products = [
                                         { id: 1, name: 'Ft - Elym (DTX)', imageUrl: '/images/WhatsApp Image 2025-02-18 at 09.53.02.jpeg', flavor: 'Mango', presentation: 'Bolsa con 250g.', description: 'Su principal beneficio es ayudar a controlar el hambre nerviosa. Acelera el proceso de digestion de los alimentos, elimina el estreñimiento. Quema grasa, elimina toxinas durante el proceso de desintoxicación, ayuda a reducir tallas. Regula los desórdenes hormonales y desinflama el estómago.', usage: 'Dos cucharadas cafeteras (8g) en 500 ml de agua.', ingredients: 'Té verde, goji, café verde, cha de bugre, jengibre, mango africano, hoja de sen, raíz de colcomeca, L-Carnitina y vitaminas C, B1, B6.' },
@@ -20,22 +21,22 @@
                                     export default function ProductGallery() {
                                         const router = useRouter();
                                         const [selectedProduct, setSelectedProduct] = useState(null);
-
+                                    
                                         const getGreeting = () => {
                                             const hours = new Date().getHours();
                                             if (hours < 12) {
-                                                return "Hola buenos días";
+                                                return "Hola ¡buenos días!";
                                             } else if (hours < 18) {
-                                                return "Hola buenas tardes";
+                                                return "Hola ¡buenas tardes!";
                                             } else {
-                                                return "Hola buenas noches";
+                                                return "Hola ¡buenas noches!";
                                             }
                                         };
                                     
                                         const handleWhatsAppClick = () => {
                                             if (selectedProduct) {
-                                                const message = `${getGreeting()}, vengo de la página web y estoy interesado/a en el producto de ${selectedProduct.name} y me gustaría recibir más información detallada sobre el producto y su precio por favor, ¡Gracias!`;
-                                                window.open(`https://wa.me/9982140280?text=${(message)}`, '_blank');
+                                                const message = `${getGreeting()}, vengo de la página web y estoy interesado/a en el producto de ${selectedProduct.name} y me gustaría recibir más info dsobre el producto y su precio por favor.`;
+                                                window.open(`https://wa.me/9982140280?text=${encodeURIComponent(message)}`, '_blank');
                                             }
                                         };
                                     
@@ -44,10 +45,10 @@
                                         return (
                                             <div className="container py-5">
                                                 <h1 className="text-center text-dark fw-bold display-4 mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                                                    <span className="text-primary">PRODUCTOS </span> ISMERELY
+                                                    PRODUCTOS <span className="text-primary">ISMERELY</span>
                                                 </h1>
                                     
-                                                <p className="text-center mb-5" style={{ fontSize: '1.25rem' }}>
+                                                <p className="text-center mb-5" style={{ fontSize: '1.25rem', color: '#555' }}>
                                                     🌿 DESINTOXICA, REGENERA Y NUTRE 🌿
                                                 </p>
                                     
@@ -57,7 +58,9 @@
                                                             <div
                                                                 className="card shadow-lg rounded-4 border-0 overflow-hidden"
                                                                 onClick={() => setSelectedProduct(product)}
-                                                                style={{ cursor: 'pointer' }}
+                                                                style={{ cursor: 'pointer', transition: 'transform 0.3s ease-in-out' }}
+                                                                onMouseEnter={(e) => (e.target.style.transform = 'scale(1.05)')}
+                                                                onMouseLeave={(e) => (e.target.style.transform = 'scale(1)')}
                                                             >
                                                                 <img
                                                                     src={product.imageUrl}
@@ -72,17 +75,38 @@
                                                                     onMouseEnter={(e) => (e.target.style.filter = 'brightness(1)')}
                                                                     onMouseLeave={(e) => (e.target.style.filter = 'brightness(0.8)')}
                                                                 />
-                                                                <div className="card-body text-center">
-                                                                    <h5 className="card-title" style={{ fontSize: '1.25rem', fontWeight: '600', fontFamily: 'Poppins, sans-serif' }}>
+                                                                <div className="card-body text-center" style={{ backgroundColor: '#f8f9fa' }}>
+                                                                    <h5
+                                                                        className="card-title"
+                                                                        style={{
+                                                                            fontSize: '1.25rem',
+                                                                            fontWeight: '600',
+                                                                            fontFamily: 'Poppins, sans-serif',
+                                                                            color: '#2C3E50', // Color de texto mejorado
+                                                                        }}
+                                                                    >
                                                                         {product.name}
                                                                     </h5>
-                                    
-                                                                    <p className="card-text">
-                                                                        <strong>PRESENTACION:</strong> {product.presentation}
+
+                                                                    <p className="card-text" style={{ fontSize: '1rem', color: '#34495E' }}>
+                                                                        <strong>PRESENTACIÓN:</strong> {product.presentation}
                                                                     </p>
-                                    
-                                                                    <button className="btn btn-info w-100 mt-3 rounded-3">
-                                                                        Detalles del Producto
+
+                                                                    <button
+                                                                        className="btn custom-btn w-100 mt-3 rounded-3"
+                                                                        style={{
+                                                                            fontWeight: '600',
+                                                                            backgroundColor: '#1ABC9C', 
+                                                                            color: '#fff',
+                                                                            border: 'none',
+                                                                            padding: '10px 20px',
+                                                                            fontSize: '1rem',
+                                                                            transition: 'background-color 0.3s ease',
+                                                                        }}
+                                                                        onMouseEnter={(e) => (e.target.style.backgroundColor = '#16A085')} 
+                                                                        onMouseLeave={(e) => (e.target.style.backgroundColor = '#1ABC9C')} 
+                                                                    >
+                                                                        Ver Detalles
                                                                     </button>
                                                                 </div>
                                                             </div>
@@ -91,132 +115,161 @@
                                                 </div>
                                     
                                                 {selectedProduct && (
-                                                    <div className="modal show d-block" style={{ background: 'rgba(0, 0, 0, 0.8)' }} aria-labelledby="productModalLabel">
-                                                        <div className="modal-dialog modal-lg">
-                                                            <div className="modal-content rounded-4 shadow-lg border-0 overflow-hidden">
-                                                                <div
-                                                                    className="modal-header"
-                                                                    style={{
-                                                                        background: 'linear-gradient(135deg, #60e2ff 0%, #2575FC 100%)',
-                                                                        padding: '20px 30px',
-                                                                        borderBottom: '3px solid #ff0000',
-                                                                    }}
-                                                                >
-                                                                    <h5 className="modal-title d-flex align-items-center" id="productModalLabel">
-                                                                        PRODUCTO: {selectedProduct.name}
-                                                                    </h5>
-                                    
-                                                                    <button
-                                                                        type="button"
-                                                                        className="btn-close btn-close-white"
-                                                                        onClick={() => setSelectedProduct(null)}
-                                                                        aria-label="Cerrar"
-                                                                    ></button>
-                                                                </div>
-                                    
-                                                                <div className="modal-body">
-                                                                    <div className="row g-4">
-                                                                        <div className="col-lg-6 text-center">
-                                                                            <img
-                                                                                src={selectedProduct.imageUrl}
-                                                                                alt={selectedProduct.name}
-                                                                                className="img-fluid rounded-4"
-                                                                                style={{
-                                                                                    maxHeight: '650px',
-                                                                                    objectFit: 'cover',
-                                                                                    boxShadow: '0px 15px 30px rgba(0, 0, 0, 0.15)',
-                                                                                }}
-                                                                            />
-                                                                        </div>
-                                    
-                                                                        <div className="col-lg-6">
-                                                                            <h4 className="text-primary mb-4">DESCRIPCION y/o BENEFICIOS:</h4>
-                                                                            <p>{selectedProduct.description}</p>
-                                    
-                                                                            <h3 className="text-primary mb-4">INGREDIENTES:</h3>
-                                                                            <p>{selectedProduct.ingredients}</p>
-                                    
-                                                                            <h3 className="text-primary mb-4">FORMA DE USO:</h3>
-                                                                            <p>{selectedProduct.usage}</p>
-                                    
-                                                                            {selectedProduct.flavor && (
-                                                                                <>
-                                                                                    <h3 className="text-primary mb-4">SABOR / SABORES:</h3>
-                                                                                    <p>{selectedProduct.flavor}</p>
-                                                                                </>
-                                                                            )}
-                                    
-                                                                            <div className="mt-5 p-4 rounded-4 shadow-lg" style={{ background: '#f8f9fa' }}>
-                                                                                <div className="d-flex align-items-center mb-3">
-                                                                                    <strong className="fs-5 text-dark">¿Interesado/a en el producto?</strong>
-                                                                                </div>
-                                    
-                                                                                <p style={{ fontSize: '1rem', lineHeight: '1.6' }}>
-                                                                                    Si te interesa el producto, favor de contactar a nuestra embajadora para obtener más información detallada del producto.
-                                                                                    <span className="text-primary fw-bold ms-1">¡Estamos aquí para ayudarte!</span>
-                                                                                </p>
-                                    
-                                                                                <button
-                                                                                    className="btn btn-success d-flex align-items-center justify-content-center shadow-lg mt-3"
-                                                                                    onClick={handleWhatsAppClick}
+                                                                    <div className="modal show d-block" style={{ background: 'rgba(0, 0, 0, 0.8)' }} aria-labelledby="productModalLabel">
+                                                                        <div className="modal-dialog modal-lg">
+                                                                            <div className="modal-content rounded-4 shadow-lg border-0 overflow-hidden">
+                                                                                <div
+                                                                                    className="modal-header"
                                                                                     style={{
-                                                                                        fontSize: '1.1rem',
-                                                                                        fontWeight: 'bold',
-                                                                                        padding: '12px 24px',
-                                                                                        borderRadius: '30px',
+                                                                                        background: 'linear-gradient(135deg, #c8c4c4 0%, #a6a5a5 100%)',
+                                                                                        padding: '20px 30px',
+                                                                                        borderBottom: '3px solid #000000',
                                                                                     }}
                                                                                 >
-                                                                                    MANDAR MENSAJE
-                                                                                </button>
+                                                                                    <h5 className="modal-title d-flex align-items-center" id="productModalLabel">
+                                                                                        PRODUCTO: {selectedProduct.name}
+                                                                                    </h5>
+
+                                                                                    <button
+                                                                                        type="button"
+                                                                                        className="btn-close btn-close-white"
+                                                                                        onClick={() => setSelectedProduct(null)}
+                                                                                        aria-label="Cerrar"
+                                                                                    ></button>
+                                                                                </div>
+
+                                                                                <div className="modal-body">
+                                                                                    <div className="row g-4">
+                                                                                        <div className="col-lg-6 text-center">
+                                                                                            <img
+                                                                                                src={selectedProduct.imageUrl}
+                                                                                                alt={selectedProduct.name}
+                                                                                                className="img-fluid rounded-4"
+                                                                                                style={{
+                                                                                                    maxHeight: '650px',
+                                                                                                    objectFit: 'cover',
+                                                                                                    boxShadow: '0px 15px 30px rgba(0, 0, 0, 0.15)',
+                                                                                                }}
+                                                                                            />
+                                                                                        </div>
+
+                                                                                        <div className="col-lg-6">
+
+                                                                                            <div className="info-box mb-4 p-3 rounded-4 shadow-sm" style={{ backgroundColor: '#e0e0e0' }}>
+                                                                                                <h4 className="mb-3" style={{ color: '#000000' }}>DESCRIPCIÓN y/o BENEFICIOS:</h4>
+                                                                                                <p>{selectedProduct.description}</p>
+                                                                                            </div>
+
+                                                                                            <div className="info-box mb-4 p-3 rounded-4 shadow-sm" style={{ backgroundColor: '#e0e0e0' }}>
+                                                                                                <h3 className="mb-3" style={{ color: '#000000' }}>INGREDIENTES:</h3>
+                                                                                                <p>{selectedProduct.ingredients}</p>
+                                                                                            </div>
+
+                                                                                            <div className="info-box mb-4 p-3 rounded-4 shadow-sm" style={{ backgroundColor: '#e0e0e0' }}>
+                                                                                                <h3 className="mb-3" style={{ color: '#000000' }}>FORMA DE USO:</h3>
+                                                                                                <p>{selectedProduct.usage}</p>
+                                                                                            </div>
+
+                                                                                            {selectedProduct.flavor && (
+                                                                                                <div className="info-box mb-4 p-3 rounded-4 shadow-sm" style={{ backgroundColor: '#e0e0e0' }}>
+                                                                                                    <h3 className="mb-3" style={{ color: '#2b2ee9' }}>SABOR / SABORES:</h3>
+                                                                                                    <p>{selectedProduct.flavor}</p>
+                                                                                                </div>
+                                                                                            )}
+
+                                                                                            <div className="mt-5 p-4 rounded-4 shadow-lg" style={{ background: '#98fffa' }}>
+                                                                                                <div className="d-flex align-items-center mb-3">
+                                                                                                    <strong className="fs-5 text-dark">
+                                                                                                        <span className="fw-bold ms-1" style={{ color: '#3498db' }}>¿Interesado/a en el producto?</span>
+                                                                                                    </strong>
+                                                                                                </div>
+
+                                                                                                <p style={{ fontSize: '1rem', lineHeight: '1.6' }}>
+                                                                                                    Si te interesa el producto, favor de contactar a nuestra embajadora para obtener más info.
+                                                                                                </p>
+
+                                                                                                <button
+                                                                                                    className="btn shadow-lg d-flex align-items-center justify-content-center mt-3"
+                                                                                                    onClick={handleWhatsAppClick}
+                                                                                                    style={{
+                                                                                                        backgroundColor: '#28a745', 
+                                                                                                        fontSize: '1.1rem',
+                                                                                                        fontWeight: 'bold',
+                                                                                                        padding: '12px 24px',
+                                                                                                        borderRadius: '30px',
+                                                                                                        color: '#ffffff'  
+                                                                                                    }}
+                                                                                                >
+                                                                                                    MANDAR MENSAJE
+                                                                                                </button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div className="modal-footer border-0 d-flex justify-content-between">
+                                                                                    <button
+                                                                                        type="button"
+                                                                                        className="btn shadow-lg"
+                                                                                        onClick={() => setSelectedProduct(null)}
+                                                                                        style={{ 
+                                                                                            borderRadius: '30px', 
+                                                                                            backgroundColor: '#ff0101',
+                                                                                            color: '#ffffff',
+                                                                                        }}
+                                                                                    >
+                                                                                        CERRAR
+                                                                                    </button>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
+                                                                )}
+
                                     
-                                                                <div className="modal-footer border-0 d-flex justify-content-between">
-                                                                    <button
-                                                                        type="button"
-                                                                        className="btn btn-secondary shadow-lg"
-                                                                        onClick={() => setSelectedProduct(null)}
-                                                                        style={{ borderRadius: '30px' }}
-                                                                    >
-                                                                        CERRAR
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                )}
-                                    
-                                                <div className="text-center mt-5">
-                                                    <p className="fw-bold" style={{ fontSize: '1.5rem', color: '#333', marginBottom: '20px' }}>
-                                                        📢 <span style={{ color: '#2C3E50' }}></span> ¿Quieres obtener el catálogo completo?, nuestra embajadora te ayudará con eso.
-                                                    </p>
-                                    
-                                                    <a
-                                                        href={`https://wa.me/9982140280?text=${(
-                                                            `${getGreeting()}, vengo de la página web y me gustaría tener el catálogo completo. ¿Podría ayudarme con eso?. Gracias`
-                                                        )}`}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="btn btn-success d-flex align-items-center justify-content-center shadow-lg mb-4"
-                                                        style={{
-                                                            fontSize: '1.2rem',
-                                                            padding: '12px 24px',
-                                                            borderRadius: '30px',
-                                                            textDecoration: 'none',
-                                                            fontWeight: 'bold',
-                                                            transition: 'all 0.3s ease',
-                                                            width: 'fit-content',
-                                                            margin: '0 auto',
-                                                        }}
-                                                        onMouseEnter={(e) => (e.target.style.backgroundColor = '#218c47')}
-                                                        onMouseLeave={(e) => (e.target.style.backgroundColor = '#28a745')}
-                                                    >
-                                                        MANDAR MENSAJE
-                                                    </a>
-                                                </div>
-                                    
+                                    <div className="text-center mt-5">
+                                        <p
+                                            className="fw-bold"
+                                            style={{
+                                                fontSize: '1.5rem',
+                                                color: '#34495E', 
+                                                marginBottom: '30px', 
+                                            }}
+                                        >
+                                            <span style={{ color: '#1ABC9C' }}></span> ¿Quieres obtener el catálogo completo? Pídeselo a nuestra embajadora.
+                                        </p>
+
+                                        <a
+                                            href={`https://wa.me/9982140280?text=${encodeURIComponent(`${getGreeting()}, vengo de la página web y me gustaría obtener el catálogo completo. ¿Podría ayudarme con eso?.`)}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="btn custom-btn d-flex align-items-center justify-content-center shadow-lg mb-4"
+                                            style={{
+                                                fontSize: '1.2rem',
+                                                padding: '12px 30px',
+                                                borderRadius: '30px',
+                                                textDecoration: 'none',
+                                                fontWeight: 'bold',
+                                                transition: 'all 0.3s ease',
+                                                width: 'fit-content',
+                                                margin: '0 auto', 
+                                                backgroundColor: '#2ECC71', 
+                                                color: '#FFFFFF', 
+                                                border: '2px solid #2ECC71', 
+                                            }}
+                                            onMouseEnter={(e) => {
+                                                e.target.style.backgroundColor = '#27AE60'; 
+                                                e.target.style.borderColor = '#27AE60'; 
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                e.target.style.backgroundColor = '#2ECC71'; 
+                                                e.target.style.borderColor = '#2ECC71';
+                                            }}
+                                        >
+                                            MANDAR MENSAJE
+                                        </a>
+                                    </div>
+
                                                 <div className="text-center mt-5">
                                                     <button
                                                         type="button"
@@ -230,8 +283,8 @@
                                                             margin: "0 auto",
                                                             transition: "all 0.3s ease",
                                                         }}
-                                                        onMouseEnter={(e) => (e.target.style.backgroundColor = "#0056b3")}
-                                                        onMouseLeave={(e) => (e.target.style.backgroundColor = "#007bff")}
+                                                        onMouseEnter={(e) => (e.target.style.backgroundColor = "#b61919")}
+                                                        onMouseLeave={(e) => (e.target.style.backgroundColor = "#dd1313")}
                                                     >
                                                         REGRESAR
                                                     </button>
@@ -239,4 +292,4 @@
                                             </div>
                                         );
                                     }
-                                    
+                    
