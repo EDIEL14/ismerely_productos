@@ -10,7 +10,7 @@
                         className="hero-section text-white py-5"
                         style={{
                             backgroundColor: "#1a1a1a",
-                            backgroundImage: "url('/images/hero-background.jpg')", // Cambia esta URL a la imagen de fondo que prefieras
+                            backgroundImage: "url('/images/hero-background.jpg')", 
                             backgroundSize: "cover",
                             backgroundPosition: "center",
                             height: "100vh", 
