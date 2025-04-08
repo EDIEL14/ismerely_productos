@@ -25,10 +25,11 @@
                                         const handleWhatsAppClick = () => {
                                             if (selectedProduct) {
                                                 const message = `Hola Buenas, vengo de la página web y estoy interesado/a en el producto de ${selectedProduct.name} y me gustaría recibir más info sobre el producto y su precio por favor.`;
-                                                window.open(`https://wa.me/9982140280?text=`, '_blank');
+                                                const encodedMessage = encodeURIComponent(message);
+                                                window.open(`https://wa.me/9982140280?text=${encodedMessage}`, '_blank');
                                             }
                                         };
-                                    
+                                        
                                         const filteredProducts = products.filter(product => product.flavor !== '');
                                     
                                         return (
