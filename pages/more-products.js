@@ -24,9 +24,9 @@
                                     
                                         const getGreeting = () => {
                                             const hours = new Date().getHours();
-                                            if (hours < 12) {
+                                            if (hours < 13) {
                                                 return "Hola ¡buenos días!";
-                                            } else if (hours < 18) {
+                                            } else if (hours < 19) {
                                                 return "Hola ¡buenas tardes!";
                                             } else {
                                                 return "Hola ¡buenas noches!";
@@ -36,7 +36,7 @@
                                         const handleWhatsAppClick = () => {
                                             if (selectedProduct) {
                                                 const message = `${getGreeting()}, vengo de la página web y estoy interesado/a en el producto de ${selectedProduct.name} y me gustaría recibir más info sobre el producto y su precio por favor.`;
-                                                window.open(`https://wa.me/9982140280?text=${encodeURIComponent(message)}`, '_blank');
+                                                window.open(`https://wa.me/9982140280?text=`, '_blank');
                                             }
                                         };
                                     
