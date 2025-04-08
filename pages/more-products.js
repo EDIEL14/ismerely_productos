@@ -82,7 +82,7 @@
                                                                             fontSize: '1.25rem',
                                                                             fontWeight: '600',
                                                                             fontFamily: 'Poppins, sans-serif',
-                                                                            color: '#2C3E50', // Color de texto mejorado
+                                                                            color: '#2C3E50', 
                                                                         }}
                                                                     >
                                                                         {product.name}
