@@ -35,7 +35,7 @@
                                     
                                         const handleWhatsAppClick = () => {
                                             if (selectedProduct) {
-                                                const message = `${getGreeting()}, vengo de la página web y estoy interesado/a en el producto de ${selectedProduct.name} y me gustaría recibir más info dsobre el producto y su precio por favor.`;
+                                                const message = `${getGreeting()}, vengo de la página web y estoy interesado/a en el producto de ${selectedProduct.name} y me gustaría recibir más info sobre el producto y su precio por favor.`;
                                                 window.open(`https://wa.me/9982140280?text=${encodeURIComponent(message)}`, '_blank');
                                             }
                                         };
