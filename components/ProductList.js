@@ -19,11 +19,11 @@
                 let greeting = '';
 
                 if (currentHour >= 5 && currentHour < 12) {
-                    greeting = '¡Buenos días!';
-                } else if (currentHour >= 12 && currentHour < 19) {
-                    greeting = '¡Buenas tardes!';
+                    greeting = 'Hola ¡Buenos días!';
+                } else if (currentHour >= 13 && currentHour < 19) {
+                    greeting = 'Hola ¡Buenas tardes!';
                 } else {
-                    greeting = '¡Buenas noches!';
+                    greeting = 'Hola ¡Buenas noches!';
                 }
 
                 return (
