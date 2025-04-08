@@ -24,7 +24,7 @@
                         <div
                             className="container text-center"
                             style={{
-                            zIndex: 5, // Para que el contenido esté por encima del fondo
+                            zIndex: 5, 
                             padding: "0 15px",
                             maxWidth: "1200px",
                             }}

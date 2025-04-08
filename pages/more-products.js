@@ -22,20 +22,9 @@
                                         const router = useRouter();
                                         const [selectedProduct, setSelectedProduct] = useState(null);
                                     
-                                        const getGreeting = () => {
-                                            const hours = new Date().getHours();
-                                            if (hours < 13) {
-                                                return "Hola ¡buenos días!";
-                                            } else if (hours < 19) {
-                                                return "Hola ¡buenas tardes!";
-                                            } else {
-                                                return "Hola ¡buenas noches!";
-                                            }
-                                        };
-                                    
                                         const handleWhatsAppClick = () => {
                                             if (selectedProduct) {
-                                                const message = `${getGreeting()}, vengo de la página web y estoy interesado/a en el producto de ${selectedProduct.name} y me gustaría recibir más info sobre el producto y su precio por favor.`;
+                                                const message = `Hola Buenas, vengo de la página web y estoy interesado/a en el producto de ${selectedProduct.name} y me gustaría recibir más info sobre el producto y su precio por favor.`;
                                                 window.open(`https://wa.me/9982140280?text=`, '_blank');
                                             }
                                         };
@@ -240,34 +229,35 @@
                                         </p>
 
                                         <a
-                                            href={`https://wa.me/9982140280?text=${(`${getGreeting()}, vengo de la página web y me gustaría obtener el catálogo completo. ¿Podría ayudarme con eso?.`)}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="btn custom-btn d-flex align-items-center justify-content-center shadow-lg mb-4"
-                                            style={{
-                                                fontSize: '1.2rem',
-                                                padding: '12px 30px',
-                                                borderRadius: '30px',
-                                                textDecoration: 'none',
-                                                fontWeight: 'bold',
-                                                transition: 'all 0.3s ease',
-                                                width: 'fit-content',
-                                                margin: '0 auto', 
-                                                backgroundColor: '#2ECC71', 
-                                                color: '#FFFFFF', 
-                                                border: '2px solid #2ECC71', 
-                                            }}
-                                            onMouseEnter={(e) => {
-                                                e.target.style.backgroundColor = '#27AE60'; 
-                                                e.target.style.borderColor = '#27AE60'; 
-                                            }}
-                                            onMouseLeave={(e) => {
-                                                e.target.style.backgroundColor = '#2ECC71'; 
-                                                e.target.style.borderColor = '#2ECC71';
-                                            }}
-                                        >
-                                            MANDAR MENSAJE
+                                                href={`https://wa.me/9982140280?text=${("Hola Buenas, vengo de la página web y me gustaría obtener el catálogo completo. ¿Podría ayudarme con eso?")}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="btn custom-btn d-flex align-items-center justify-content-center shadow-lg mb-4"
+                                                style={{
+                                                    fontSize: '1.2rem',
+                                                    padding: '12px 30px',
+                                                    borderRadius: '30px',
+                                                    textDecoration: 'none',
+                                                    fontWeight: 'bold',
+                                                    transition: 'all 0.3s ease',
+                                                    width: 'fit-content',
+                                                    margin: '0 auto',
+                                                    backgroundColor: '#2ECC71',
+                                                    color: '#FFFFFF',
+                                                    border: '2px solid #2ECC71',
+                                                }}
+                                                onMouseEnter={(e) => {
+                                                    e.target.style.backgroundColor = '#27AE60';
+                                                    e.target.style.borderColor = '#27AE60';
+                                                }}
+                                                onMouseLeave={(e) => {
+                                                    e.target.style.backgroundColor = '#2ECC71';
+                                                    e.target.style.borderColor = '#2ECC71';
+                                                }}
+                                            >
+                                                MANDAR MENSAJE
                                         </a>
+
                                     </div>
 
                                                 <div className="text-center mt-5">

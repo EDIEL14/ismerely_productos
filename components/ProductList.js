@@ -15,17 +15,6 @@
                     { id: 5, name: 'My Mahal (Caps)', imageUrl: '/images/WhatsApp Image 2025-02-11 at 08.14.09.jpeg', benefits: ['Disminuye tensión nerviosa', 'Mejora el sueño', 'Alivia fatiga muscular', 'Equilibra sistema nervioso'] },
                 ];
 
-                const currentHour = new Date().getHours();
-                let greeting = '';
-
-                if (currentHour >= 5 && currentHour < 12) {
-                    greeting = 'Hola ¡Buenos días!';
-                } else if (currentHour >= 13 && currentHour < 19) {
-                    greeting = 'Hola ¡Buenas tardes!';
-                } else {
-                    greeting = 'Hola ¡Buenas noches!';
-                }
-
                 return (
                     <section id="catalogo" className="py-5 bg-light">
                         <div className="container text-center mb-5">
@@ -54,7 +43,7 @@
                             <p className="fs-5 fw-semibold text-dark">Pídelo ahora: Contacta a tu embajadora de Ismerely</p>
                             <div className="d-flex flex-column flex-md-row justify-content-center gap-3">
                                 <motion.a
-                                    href={`https://wa.me/9982140280?text=${(`${greeting}, vengo de la página web y me gustaría más información detallada de los productos de alto impacto por favor.`)}`}
+                                    href={`https://wa.me/9982140280?text=${("Hola buenas, vengo de la página web y me gustaría más información detallada de los productos de alto impacto por favor.")}`}
                                     target="_blank"
                                     className="btn btn-success px-4 py-2 rounded shadow-sm animate__animated animate__bounceIn"
                                     whileHover={{ scale: 1.05 }}
