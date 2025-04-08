@@ -240,7 +240,7 @@
                                         </p>
 
                                         <a
-                                            href={`https://wa.me/9982140280?text=${encodeURIComponent(`${getGreeting()}, vengo de la página web y me gustaría obtener el catálogo completo. ¿Podría ayudarme con eso?.`)}`}
+                                            href={`https://wa.me/9982140280?text=${(`${getGreeting()}, vengo de la página web y me gustaría obtener el catálogo completo. ¿Podría ayudarme con eso?.`)}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="btn custom-btn d-flex align-items-center justify-content-center shadow-lg mb-4"
