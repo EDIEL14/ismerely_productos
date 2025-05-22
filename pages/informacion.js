@@ -2,7 +2,7 @@
             import Image from 'next/image';
             import 'bootstrap/dist/css/bootstrap.min.css';
             import { useRouter } from 'next/router';
-            import { Fade } from 'react-awesome-reveal'; 
+            import { Fade, Slide } from 'react-awesome-reveal';
 
             const Informacion = () => {
                 const router = useRouter();
@@ -22,13 +22,33 @@
 
                 return (
                     <div className="container py-5" style={{ backgroundColor: '#ffffff' }}>
-                        <div className="text-center mb-5">
-                            <h1 className="display-4 fw-bold text-dark">
+                        <div className="text-center mb-5 px-5 py-5 rounded" style={{ 
+                            background: 'linear-gradient(135deg, #e0f7fa 0%, #ffffff 100%)', 
+                            boxShadow: '0 8px 16px rgba(0,0,0,0.1)' 
+                        }}>
+                        <Fade cascade triggerOnce damping={0.2}>
+                            <Slide direction="up" triggerOnce>
+                            <h1 className="display-4 fw-bold text-dark" style={{ 
+                                fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", 
+                                textShadow: '1px 1px 3px rgba(0,0,0,0.1)' 
+                            }}>
                                 ¿QUE ES <span className="text-success">ISMERELY?</span>
                             </h1>
-                            <p className="lead text-muted">
-                                Ismerely es una marca vanguardista que ofrece productos basados en nutrición holística y trofología, diseñados para desintoxicar, regenerar y nutrir tu cuerpo de forma natural.
+                            </Slide>
+                            <Slide direction="up" delay={200} triggerOnce>
+                            <p className="lead text-muted mx-auto" style={{ 
+                                width: '90%', 
+                                maxWidth: '900px', 
+                                lineHeight: '1.75', 
+                                fontSize: '1.25rem', 
+                                letterSpacing: '0.03em',
+                                textAlign: 'justify',
+                                marginTop: '1rem'
+                            }}>
+                                Ismerely es una marca de productos que incluyen suplementos nutricionales e infusiones, basada en Nutrición Holística (Nutrición basada en plantas) y Trofología (Correcta combinación de plantas), lo que permite que cada producto ayude a su cuerpo a desintoxicar, regenerar y nutrir.
                             </p>
+                            </Slide>
+                        </Fade>
                         </div>
 
                         <Fade cascade>
@@ -99,38 +119,44 @@
                             ))}
                         </div>
 
-                        <div className="row justify-content-center my-5">
-                            <div className="col-lg-8 text-center">
-                                <div className="bg-light p-4 shadow-lg rounded-lg">
-                                    <h3 className="fw-semibold text-primary">Nuestro Compromiso</h3>
-                                    <p className="text-muted">
+                                <div className="container my-5">
+                                <div className="row justify-content-center">
+                                    <div className="col-lg-10 col-xl-8">
+                                    <div className="bg-light p-5 shadow rounded-lg">
+                                        <h3 className="fw-bold text-primary mb-4" style={{ letterSpacing: '1.5px', fontSize: '1.9rem' }}>
+                                        Nuestro Compromiso
+                                        </h3>
+                                        <p className="text-muted fs-5 mb-4" style={{ lineHeight: '1.75', letterSpacing: '0.03em' }}>
                                         Nos comprometemos con la calidad y la eficacia de nuestros productos mediante estrictos estándares:
-                                    </p>
-                                    <ul className="list-unstyled">
-                                        <li><strong>✔️ Ingredientes de alta calidad</strong></li>
-                                        <li><strong>✔️ Elaborados con tecnología Alcaliniceutica</strong></li>
-                                        <li><strong>✔️ Pruebas rigurosas de calidad</strong></li>
-                                        <li><strong>✔️ Hechos con amor y dedicación</strong></li>
-                                    </ul>
+                                        </p>
+                                        <ul className="list-unstyled fs-5" style={{ letterSpacing: '0.05em', lineHeight: '2' }}>
+                                        <li className="mb-2"><strong>✔️ Ingredientes de alta calidad</strong></li>
+                                        <li className="mb-2"><strong>✔️ Elaborados con tecnología Alcaliniceutica</strong></li>
+                                        <li className="mb-2"><strong>✔️ Pruebas rigurosas de calidad</strong></li>
+                                        <li className="mb-2"><strong>✔️ Hechos con amor y dedicación</strong></li>
+                                        </ul>
+                                    </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div className="row justify-content-center my-5">
-                            <div className="col-lg-8 text-center">
-                                <div className="bg-light p-4 shadow-lg rounded-lg">
-                                    <h3 className="fw-semibold text-primary">Fuerza de los Productos</h3>
-                                    <p className="text-muted">
-                                        Nuestros productos son únicos en el mundo, basados en el Sistema de Regeneración Alcalina. Están mejorados con tres técnicas esenciales:
-                                    </p>
-                                    <ul className="list-unstyled">
-                                        <li><strong>🌱 Herbolaria:</strong> Estudio de plantas con propiedades medicinales.</li>
-                                        <li><strong>⚖️ Alcaliniceutica:</strong> Regulación de la alcalinidad corporal.</li>
-                                        <li><strong>🍃 Trofología:</strong> Combinación óptima de ingredientes para resultados máximos.</li>
-                                    </ul>
+                                <div className="row justify-content-center mt-5">
+                                    <div className="col-lg-10 col-xl-8">
+                                    <div className="bg-light p-5 shadow rounded-lg">
+                                        <h3 className="fw-bold text-primary mb-4" style={{ letterSpacing: '1.5px', fontSize: '1.9rem' }}>
+                                        SISTEMA DE REGENERACIÓN ALCALINA (S-R-A)
+                                        </h3>
+                                        <p className="text-muted fs-5 mb-4" style={{ lineHeight: '1.75', letterSpacing: '0.03em' }}>
+                                        Nuestros productos son únicos en el mundo, basados en el Sistema de Regeneración Alcalina (S-R-A). Esto significa que todos nuestros productos se mejoran bajo 3 técnicas:
+                                        </p>
+                                        <ul className="list-unstyled fs-5" style={{ letterSpacing: '0.03em', lineHeight: '1.9' }}>
+                                        <li className="mb-3"><strong>🌱 Herbolaria:</strong> Se estudian las plantas orgánicas con propiedades medicinales que más pueden beneficiar a la gente.</li>
+                                        <li className="mb-3"><strong>⚖️ Alcaliniceutica:</strong> Se estudia cómo mezclar los ingredientes naturales para que regulen la alcalinidad del cuerpo.</li>
+                                        <li className="mb-3"><strong>🍃 Trofología:</strong> Se estudia cómo combinar los ingredientes para dar el máximo resultado.</li>
+                                        </ul>
+                                    </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                                </div>
 
                         <div className="text-center mt-4">
                             <button onClick={handleRegresar} className="btn btn-primary px-4 py-2 shadow">

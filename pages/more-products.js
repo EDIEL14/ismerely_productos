@@ -1,7 +1,8 @@
                         import { useState } from 'react';
                         import 'bootstrap/dist/css/bootstrap.min.css';
                         import { useRouter } from 'next/router';
-                        import '../styles/styles.css'; 
+                        import { FaTimes, FaWhatsapp } from 'react-icons/fa';
+                        import 'animate.css';
 
                                     const products = [
                                         { id: 1, name: 'Ft - Elym (DTX)', imageUrl: '/images/WhatsApp Image 2025-02-18 at 09.53.02.jpeg', flavor: 'Mango', presentation: 'Bolsa con 250g.', description: 'Su principal beneficio es ayudar a controlar el hambre nerviosa. Acelera el proceso de digestion de los alimentos, elimina el estreñimiento. Quema grasa, elimina toxinas durante el proceso de desintoxicación, ayuda a reducir tallas. Regula los desórdenes hormonales y desinflama el estómago.', usage: 'Dos cucharadas cafeteras (8g) en 500 ml de agua.', ingredients: 'Té verde, goji, café verde, cha de bugre, jengibre, mango africano, hoja de sen, raíz de colcomeca, L-Carnitina y vitaminas C, B1, B6.' },
@@ -21,10 +22,23 @@
                                     export default function ProductGallery() {
                                         const router = useRouter();
                                         const [selectedProduct, setSelectedProduct] = useState(null);
-                                    
+                                        const infoBoxStyle = {
+                                            backgroundColor: '#f7f9fa',
+                                            padding: '1rem 1.25rem',
+                                            borderRadius: '16px',
+                                            boxShadow: '0 6px 12px rgba(0,0,0,0.07)',
+                                            color: '#34495e',
+                                            };
+
+                                            const infoBoxTitleStyle = {
+                                            marginBottom: '0.75rem',
+                                            color: '#34495e',
+                                            fontWeight: '700',
+                                            };
+                
                                         const handleWhatsAppClick = () => {
                                             if (selectedProduct) {
-                                                const message = `Hola Buenas, vengo de la página web y estoy interesado/a en el producto de ${selectedProduct.name} y me gustaría recibir más info sobre el producto y su precio por favor.`;
+                                                const message = `¡Hola!, vengo de la página web y estoy interesado/a en el producto de ${selectedProduct.name} y me gustaría recibir más informacion sobre el producto y su precio por favor.`;
                                                 const encodedMessage = encodeURIComponent(message);
                                                 window.open(`https://wa.me/9982140280?text=${encodedMessage}`, '_blank');
                                             }
@@ -32,255 +46,354 @@
                                         
                                         const filteredProducts = products.filter(product => product.flavor !== '');
                                     
-                                        return (
-                                            <div className="container py-5">
-                                                <h1 className="text-center text-dark fw-bold display-4 mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                                                    PRODUCTOS <span className="text-primary">ISMERELY</span>
-                                                </h1>
-                                    
-                                                <p className="text-center mb-5" style={{ fontSize: '1.25rem', color: '#555' }}>
-                                                    🌿 DESINTOXICA, REGENERA Y NUTRE 🌿
-                                                </p>
-                                    
-                                                <div className="row justify-content-center">
-                                                    {filteredProducts.map((product) => (
-                                                        <div key={product.id} className="col-lg-3 col-md-4 col-sm-6 mb-4">
-                                                            <div
-                                                                className="card shadow-lg rounded-4 border-0 overflow-hidden"
-                                                                onClick={() => setSelectedProduct(product)}
-                                                                style={{ cursor: 'pointer', transition: 'transform 0.3s ease-in-out' }}
-                                                                onMouseEnter={(e) => (e.target.style.transform = 'scale(1.05)')}
-                                                                onMouseLeave={(e) => (e.target.style.transform = 'scale(1)')}
-                                                            >
-                                                                <img
-                                                                    src={product.imageUrl}
-                                                                    className="card-img-top img-fluid rounded-4"
-                                                                    alt={product.name}
-                                                                    style={{
-                                                                        height: '350px',
-                                                                        objectFit: 'cover',
-                                                                        filter: 'brightness(0.8)',
-                                                                        transition: 'filter 0.3s ease',
-                                                                    }}
-                                                                    onMouseEnter={(e) => (e.target.style.filter = 'brightness(1)')}
-                                                                    onMouseLeave={(e) => (e.target.style.filter = 'brightness(0.8)')}
-                                                                />
-                                                                <div className="card-body text-center" style={{ backgroundColor: '#f8f9fa' }}>
-                                                                    <h5
-                                                                        className="card-title"
-                                                                        style={{
-                                                                            fontSize: '1.25rem',
-                                                                            fontWeight: '600',
-                                                                            fontFamily: 'Poppins, sans-serif',
-                                                                            color: '#2C3E50', 
-                                                                        }}
-                                                                    >
-                                                                        {product.name}
-                                                                    </h5>
+                                                return (
 
-                                                                    <p className="card-text" style={{ fontSize: '1rem', color: '#34495E' }}>
-                                                                        <strong>PRESENTACIÓN:</strong> {product.presentation}
-                                                                    </p>
-
-                                                                    <button
-                                                                        className="btn custom-btn w-100 mt-3 rounded-3"
-                                                                        style={{
-                                                                            fontWeight: '600',
-                                                                            backgroundColor: '#1ABC9C', 
-                                                                            color: '#fff',
-                                                                            border: 'none',
-                                                                            padding: '10px 20px',
-                                                                            fontSize: '1rem',
-                                                                            transition: 'background-color 0.3s ease',
-                                                                        }}
-                                                                        onMouseEnter={(e) => (e.target.style.backgroundColor = '#16A085')} 
-                                                                        onMouseLeave={(e) => (e.target.style.backgroundColor = '#1ABC9C')} 
-                                                                    >
-                                                                        Ver Detalles
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                    
-                                                {selectedProduct && (
-                                                                    <div className="modal show d-block" style={{ background: 'rgba(0, 0, 0, 0.8)' }} aria-labelledby="productModalLabel">
-                                                                        <div className="modal-dialog modal-lg">
-                                                                            <div className="modal-content rounded-4 shadow-lg border-0 overflow-hidden">
-                                                                                <div
-                                                                                    className="modal-header"
-                                                                                    style={{
-                                                                                        background: 'linear-gradient(135deg, #c8c4c4 0%, #a6a5a5 100%)',
-                                                                                        padding: '20px 30px',
-                                                                                        borderBottom: '3px solid #000000',
-                                                                                    }}
-                                                                                >
-                                                                                    <h5 className="modal-title d-flex align-items-center" id="productModalLabel">
-                                                                                        PRODUCTO: {selectedProduct.name}
-                                                                                    </h5>
-
-                                                                                    <button
-                                                                                        type="button"
-                                                                                        className="btn-close btn-close-white"
-                                                                                        onClick={() => setSelectedProduct(null)}
-                                                                                        aria-label="Cerrar"
-                                                                                    ></button>
-                                                                                </div>
-
-                                                                                <div className="modal-body">
-                                                                                    <div className="row g-4">
-                                                                                        <div className="col-lg-6 text-center">
-                                                                                            <img
-                                                                                                src={selectedProduct.imageUrl}
-                                                                                                alt={selectedProduct.name}
-                                                                                                className="img-fluid rounded-4"
-                                                                                                style={{
-                                                                                                    maxHeight: '650px',
-                                                                                                    objectFit: 'cover',
-                                                                                                    boxShadow: '0px 15px 30px rgba(0, 0, 0, 0.15)',
-                                                                                                }}
-                                                                                            />
-                                                                                        </div>
-
-                                                                                        <div className="col-lg-6">
-
-                                                                                            <div className="info-box mb-4 p-3 rounded-4 shadow-sm" style={{ backgroundColor: '#e0e0e0' }}>
-                                                                                                <h4 className="mb-3" style={{ color: '#000000' }}>DESCRIPCIÓN y/o BENEFICIOS:</h4>
-                                                                                                <p>{selectedProduct.description}</p>
-                                                                                            </div>
-
-                                                                                            <div className="info-box mb-4 p-3 rounded-4 shadow-sm" style={{ backgroundColor: '#e0e0e0' }}>
-                                                                                                <h3 className="mb-3" style={{ color: '#000000' }}>INGREDIENTES:</h3>
-                                                                                                <p>{selectedProduct.ingredients}</p>
-                                                                                            </div>
-
-                                                                                            <div className="info-box mb-4 p-3 rounded-4 shadow-sm" style={{ backgroundColor: '#e0e0e0' }}>
-                                                                                                <h3 className="mb-3" style={{ color: '#000000' }}>FORMA DE USO:</h3>
-                                                                                                <p>{selectedProduct.usage}</p>
-                                                                                            </div>
-
-                                                                                            {selectedProduct.flavor && (
-                                                                                                <div className="info-box mb-4 p-3 rounded-4 shadow-sm" style={{ backgroundColor: '#e0e0e0' }}>
-                                                                                                    <h3 className="mb-3" style={{ color: '#2b2ee9' }}>SABOR / SABORES:</h3>
-                                                                                                    <p>{selectedProduct.flavor}</p>
-                                                                                                </div>
-                                                                                            )}
-
-                                                                                            <div className="mt-5 p-4 rounded-4 shadow-lg" style={{ background: '#98fffa' }}>
-                                                                                                <div className="d-flex align-items-center mb-3">
-                                                                                                    <strong className="fs-5 text-dark">
-                                                                                                        <span className="fw-bold ms-1" style={{ color: '#3498db' }}>¿Interesado/a en el producto?</span>
-                                                                                                    </strong>
-                                                                                                </div>
-
-                                                                                                <p style={{ fontSize: '1rem', lineHeight: '1.6' }}>
-                                                                                                    Si te interesa el producto, favor de contactar a nuestra embajadora para obtener más info.
-                                                                                                </p>
-
-                                                                                                <button
-                                                                                                    className="btn shadow-lg d-flex align-items-center justify-content-center mt-3"
-                                                                                                    onClick={handleWhatsAppClick}
-                                                                                                    style={{
-                                                                                                        backgroundColor: '#28a745', 
-                                                                                                        fontSize: '1.1rem',
-                                                                                                        fontWeight: 'bold',
-                                                                                                        padding: '12px 24px',
-                                                                                                        borderRadius: '30px',
-                                                                                                        color: '#ffffff'  
-                                                                                                    }}
-                                                                                                >
-                                                                                                    MANDAR MENSAJE
-                                                                                                </button>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <div className="modal-footer border-0 d-flex justify-content-between">
-                                                                                    <button
-                                                                                        type="button"
-                                                                                        className="btn shadow-lg"
-                                                                                        onClick={() => setSelectedProduct(null)}
-                                                                                        style={{ 
-                                                                                            borderRadius: '30px', 
-                                                                                            backgroundColor: '#ff0101',
-                                                                                            color: '#ffffff',
-                                                                                        }}
-                                                                                    >
-                                                                                        CERRAR
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                )}
-
-                                    
-                                    <div className="text-center mt-5">
-                                        <p
-                                            className="fw-bold"
+                                        <div
+                                        className="container py-5"
+                                        style={{
+                                            fontFamily: "'Poppins', sans-serif",
+                                            userSelect: 'none',
+                                        }}
+                                        >
+                                        <h1
+                                            className="text-center fw-bold mb-4"
                                             style={{
-                                                fontSize: '1.5rem',
-                                                color: '#34495E', 
-                                                marginBottom: '30px', 
+                                            fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
+                                            color: '#222',
+                                            letterSpacing: '0.1em',
+                                            position: 'relative',
+                                            overflow: 'hidden',
+                                            animation: 'slideInFromLeft 1s ease forwards',
                                             }}
                                         >
-                                            <span style={{ color: '#1ABC9C' }}></span> ¿Quieres obtener el catálogo completo? Pídeselo a nuestra embajadora.
-                                        </p>
-
-                                        <a
-                                                href={`https://wa.me/9982140280?text=${("Hola Buenas, vengo de la página web y me gustaría obtener el catálogo completo. ¿Podría ayudarme con eso?")}`}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="btn custom-btn d-flex align-items-center justify-content-center shadow-lg mb-4"
-                                                style={{
-                                                    fontSize: '1.2rem',
-                                                    padding: '12px 30px',
-                                                    borderRadius: '30px',
-                                                    textDecoration: 'none',
-                                                    fontWeight: 'bold',
-                                                    transition: 'all 0.3s ease',
-                                                    width: 'fit-content',
-                                                    margin: '0 auto',
-                                                    backgroundColor: '#2ECC71',
-                                                    color: '#FFFFFF',
-                                                    border: '2px solid #2ECC71',
-                                                }}
-                                                onMouseEnter={(e) => {
-                                                    e.target.style.backgroundColor = '#27AE60';
-                                                    e.target.style.borderColor = '#27AE60';
-                                                }}
-                                                onMouseLeave={(e) => {
-                                                    e.target.style.backgroundColor = '#2ECC71';
-                                                    e.target.style.borderColor = '#2ECC71';
-                                                }}
+                                            PRODUCTOS{' '}
+                                            <span
+                                            className="text-primary"
+                                            style={{
+                                                position: 'relative',
+                                                display: 'inline-block',
+                                                animation: 'pulseColor 2.5s ease-in-out infinite',
+                                            }}
                                             >
-                                                MANDAR MENSAJE
-                                        </a>
+                                            ISMERELY
+                                            <span
+                                                style={{
+                                                position: 'absolute',
+                                                bottom: '-6px',
+                                                left: 0,
+                                                right: 0,
+                                                height: '6px',
+                                                background:
+                                                    'linear-gradient(90deg, #3BB33B, #34a853, #2E7D32)',
+                                                borderRadius: '3px',
+                                                animation: 'expandWidth 3s ease-in-out infinite',
+                                                transformOrigin: 'left',
+                                                opacity: 0.7,
+                                                zIndex: -1,
+                                                }}
+                                            />
+                                            </span>
+                                        </h1>
 
+                                        <p
+                                            className="text-center mx-auto"
+                                            style={{
+                                            maxWidth: '450px',
+                                            fontSize: 'clamp(1rem, 2vw, 1.25rem)',
+                                            color: '#555',
+                                            letterSpacing: '0.05em',
+                                            fontWeight: 500,
+                                            animation: 'fadeInUp 1.5s ease forwards',
+                                            opacity: 0,
+                                            marginBottom: '2.5rem',
+                                            }}
+                                        >
+                                            🌿 DESINTOXICA, REGENERA Y NUTRE 🌿
+                                        </p>
+                                        
+                                        <style>
+                                            {`
+                                            @keyframes slideInFromLeft {
+                                                0% {
+                                                transform: translateX(-50px);
+                                                opacity: 0;
+                                                }
+                                                100% {
+                                                transform: translateX(0);
+                                                opacity: 1;
+                                                }
+                                            }
+
+                                            @keyframes pulseColor {
+                                                0%, 100% {
+                                                color: #3BB33B;
+                                                text-shadow: 0 0 8px #3BB33B;
+                                                }
+                                                50% {
+                                                color: #2E7D32;
+                                                text-shadow: 0 0 15px #2E7D32;
+                                                }
+                                            }
+
+                                            @keyframes expandWidth {
+                                                0%, 100% {
+                                                width: 50%;
+                                                opacity: 0.7;
+                                                }
+                                                50% {
+                                                width: 90%;
+                                                opacity: 1;
+                                                }
+                                            }
+
+                                            @keyframes fadeInUp {
+                                                to {
+                                                opacity: 1;
+                                                transform: translateY(0);
+                                                }
+                                                from {
+                                                opacity: 0;
+                                                transform: translateY(15px);
+                                                }
+                                            }
+                                            `}
+                                        </style>
+
+                            <div className="row g-4 justify-content-center">
+                            {filteredProducts.map((product) => (
+                                <div
+                                key={product.id}
+                                className="col-12 col-sm-6 col-md-4 col-lg-3"
+                                style={{ perspective: '1000px' }} 
+                                >
+                                <div
+                                    className="product-card bg-white rounded-4 shadow-sm overflow-hidden d-flex flex-column h-100"
+                                    onClick={() => setSelectedProduct(product)}
+                                    style={{
+                                    cursor: 'pointer',
+                                    transformStyle: 'preserve-3d',
+                                    transition: 'transform 0.5s ease, box-shadow 0.5s ease',
+                                    }}
+                                    onMouseEnter={(e) => {
+                                    e.currentTarget.style.transform = 'translateY(-10px) scale(1.03) rotateX(3deg)';
+                                    e.currentTarget.style.boxShadow = '0 20px 30px rgba(0, 0, 0, 0.25)';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                    e.currentTarget.style.transform = 'translateY(0) scale(1) rotateX(0)';
+                                    e.currentTarget.style.boxShadow = '0 6px 15px rgba(0, 0, 0, 0.1)';
+                                    }}
+                                >
+                                    <div className="position-relative overflow-hidden" style={{ height: '400px' }}>
+                                    <img
+                                        src={product.imageUrl}
+                                        alt={product.name}
+                                        className="w-100 h-100"
+                                        style={{
+                                        objectFit: 'cover',
+                                        transition: 'transform 0.6s ease, filter 0.4s ease',
+                                        filter: 'brightness(0.95)',
+                                        }}
+                                        onMouseEnter={(e) => {
+                                        e.currentTarget.style.transform = 'scale(1.1)';
+                                        e.currentTarget.style.filter = 'brightness(1)';
+                                        }}
+                                        onMouseLeave={(e) => {
+                                        e.currentTarget.style.transform = 'scale(1)';
+                                        e.currentTarget.style.filter = 'brightness(0.95)';
+                                        }}
+                                    />
+                                    <div
+                                        className="position-absolute bottom-0 start-0 w-100 px-3 py-2"
+                                        style={{
+                                        background: 'rgba(0, 0, 0, 0.4)',
+                                        color: '#fff',
+                                        fontWeight: '600',
+                                        fontSize: '1.1rem',
+                                        backdropFilter: 'blur(5px)',
+                                        borderTopRightRadius: '1rem',
+                                        }}
+                                    >
+                                        {product.name}
+                                    </div>
                                     </div>
 
-                                                <div className="text-center mt-5">
-                                                    <button
-                                                        type="button"
-                                                        className="btn btn-primary shadow-lg"
-                                                        onClick={() => router.back()}
-                                                        style={{
-                                                            borderRadius: "30px",
-                                                            fontSize: "1.2rem",
-                                                            padding: "12px 24px",
-                                                            width: "fit-content",
-                                                            margin: "0 auto",
-                                                            transition: "all 0.3s ease",
-                                                        }}
-                                                        onMouseEnter={(e) => (e.target.style.backgroundColor = "#b61919")}
-                                                        onMouseLeave={(e) => (e.target.style.backgroundColor = "#dd1313")}
-                                                    >
-                                                        REGRESAR
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        );
-                                    }
-                    
+                                    <div className="p-3 d-flex flex-column flex-grow-1">
+                                    <p
+                                        className="text-muted flex-grow-1 mb-3"
+                                        style={{ fontSize: '0.9rem', fontWeight: 500, letterSpacing: '0.02em' }}
+                                    >
+                                        <strong>Presentación:</strong> {product.presentation}
+                                    </p>
+
+                                    <button
+                                        className="btn btn-success rounded-pill fw-semibold py-2"
+                                        style={{
+                                        fontSize: '1rem',
+                                        boxShadow: '0 4px 12px rgba(72, 180, 97, 0.5)',
+                                        transition: 'background-color 0.3s ease, box-shadow 0.3s ease',
+                                        }}
+                                        onMouseEnter={(e) => {
+                                        e.currentTarget.style.backgroundColor = '#3BB33B';
+                                        e.currentTarget.style.boxShadow = '0 6px 20px rgba(59, 179, 59, 0.7)';
+                                        }}
+                                        onMouseLeave={(e) => {
+                                        e.currentTarget.style.backgroundColor = '';
+                                        e.currentTarget.style.boxShadow = '0 4px 12px rgba(72, 180, 97, 0.5)';
+                                        }}
+                                    >
+                                        Ver información
+                                    </button>
+                                    </div>
+                                </div>
+                                </div>
+                            ))}
+                            </div>
+
+                {selectedProduct && (
+                  <div className="modal fade show d-block" tabIndex="-1" role="dialog" style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)' }}>
+                    <div className="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                      <div className="modal-content border-0 rounded-4 shadow-lg">
+
+                        <button
+                          type="button"
+                          className="btn btn-danger position-absolute top-0 end-0 m-3 d-flex align-items-center justify-content-center rounded-circle shadow"
+                          style={{ width: '40px', height: '40px', zIndex: 1051 }}
+                          onClick={() => setSelectedProduct(null)}
+                        >
+                          <FaTimes />
+                        </button>
+
+                        <div className="modal-body p-4">
+
+                          <h3 className="text-center fw-bold mb-4 text-dark">
+                            {selectedProduct.name.toUpperCase()}
+                          </h3>
+
+                          <div className="row g-4">
+
+                            <div className="col-12 col-lg-5">
+                              <div className="bg-light rounded-4 shadow-sm overflow-hidden p-3 text-center h-100">
+                                <img
+                                  src={selectedProduct.imageUrl}
+                                  alt={selectedProduct.name}
+                                  className="img-fluid rounded-3"
+                                  style={{ maxHeight: '400px', objectFit: 'contain' }}
+                                />
+                              </div>
+                            </div>
+
+                            <div className="col-12 col-lg-7">
+                              <div className="d-flex flex-column gap-4">
+
+                                <div className="card border-0 shadow-sm rounded-4">
+                                  <div className="card-body">
+                                    <h5 className="card-title text-primary">Descripción y Beneficios</h5>
+                                    <p className="card-text text-muted">{selectedProduct.description}</p>
+                                  </div>
+                                </div>
+
+                                <div className="card border-0 shadow-sm rounded-4">
+                                  <div className="card-body">
+                                    <h5 className="card-title text-primary">Ingredientes</h5>
+                                    <p className="card-text text-muted">{selectedProduct.ingredients}</p>
+                                  </div>
+                                </div>
+
+                                <div className="card border-0 shadow-sm rounded-4">
+                                  <div className="card-body">
+                                    <h5 className="card-title text-primary">Forma de Uso</h5>
+                                    <p className="card-text text-muted">{selectedProduct.usage}</p>
+                                  </div>
+                                </div>
+
+                                {selectedProduct.flavor && (
+                                  <div className="card border-0 shadow-sm rounded-4">
+                                    <div className="card-body">
+                                      <h5 className="card-title text-primary">Sabor / Sabores</h5>
+                                      <p className="card-text text-muted">{selectedProduct.flavor}</p>
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="mt-5 text-center">
+                            <h5 className="fw-bold text-success mb-3">¿Te interesa este producto?</h5>
+                            <p className="text-muted mb-3">Contácta directamente a nuestra embajadora para que te de más información detallada o para hacer tu pedido.</p>
+                            <button
+                              onClick={handleWhatsAppClick}
+                              className="btn btn-success btn-lg d-inline-flex align-items-center gap-2 px-4 py-2 rounded-pill shadow-sm"
+                            >
+                              <FaWhatsapp size={20} />
+                              Ir a Contactarla
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                    <div className="container my-5">
+                    <div
+                        className="mx-auto p-4 p-md-5 rounded-4 shadow contact-box text-center"
+                        style={{
+                        maxWidth: '600px',
+                        background: 'linear-gradient(135deg, #f8f9fa, #ffffff)',
+                        transition: 'transform 0.4s ease, box-shadow 0.4s ease',
+                        }}
+                        onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-5px)';
+                        e.currentTarget.style.boxShadow = '0 10px 30px rgba(0,0,0,0.15)';
+                        }}
+                        onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.boxShadow = '0 6px 15px rgba(0,0,0,0.08)';
+                        }}
+                    >
+                        <div className="mb-4">
+                        <h4 className="fw-bold text-secondary mb-2" style={{ fontSize: '1.5rem' }}>
+                            ¿Quieres obtener el catálogo completo?
+                        </h4>
+                        <p className="text-muted mb-0" style={{ fontSize: '1rem' }}>
+                            Pídeselo a nuestra embajadora por WhatsApp.
+                        </p>
+                        </div>
+
+                        <a
+                        href={`https://wa.me/9982140280?text=${encodeURIComponent(
+                            '¡Hola! mucho gusto, vengo de la página web y me gustaría obtener el catálogo completo. ¿Podría ayudarme con eso?'
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn btn-success rounded-pill px-4 py-2 fw-semibold shadow-sm d-inline-flex align-items-center gap-2"
+                        style={{
+                            fontSize: '1.1rem',
+                            transition: 'all 0.3s ease',
+                            boxShadow: '0 6px 12px rgba(40,167,69,0.4)',
+                        }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = '#28b65d';
+                            e.currentTarget.style.boxShadow = '0 8px 20px rgba(40,167,69,0.6)';
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = '#198754';
+                            e.currentTarget.style.boxShadow = '0 6px 12px rgba(40,167,69,0.4)';
+                        }}
+                        >
+                        <FaWhatsapp size={20} /> ENVIAR MENSAJE
+                        </a>
+                    </div>
+                    </div>
+
+                                            
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-danger px-4 py-2 rounded-pill fw-semibold"
+                                                    onClick={() => router.back()}
+                                                    style={{ transition: 'all 0.3s ease' }}
+                                                >
+                                                    REGRESAR
+                                                </button>
+                                    </div> )};
